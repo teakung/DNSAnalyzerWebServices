@@ -1,0 +1,56 @@
+PUT dnsanalyzer
+{
+    "settings" : {
+        "dnstraffic" : {
+            "number_of_shards" : 1, 
+            "number_of_replicas" : 1 
+        }
+    }
+}
+
+//
+PUT dnsanalyzer
+{
+  "mappings": {
+    "dnstraffic": {
+      "properties": {
+        "timestamp_s": {
+          "type": "date"
+        },
+        "timestamp_ms":{
+        	"type": "integer"
+        },
+        "hostname":{
+        	"type": "keyword"
+        },
+        "client":{
+        	"type": "keyword"
+        },
+        "server":{
+        	"type": "keyword"
+        },
+        "proto":{
+        	"type": "keyword"
+        },
+        "class":{
+            "type": "keyword"
+        },
+        "query":{
+        	"type": "keyword"
+        },
+        "type":{
+        	"type": "keyword"
+        },
+        "answer":{
+            "type": "keyword"
+        },
+        "ttl":{
+            "type": "integer"
+        },
+        "count":{
+            "type": "integer"
+        }
+      }
+    }
+  }
+}

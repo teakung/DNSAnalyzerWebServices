@@ -1,0 +1,94 @@
+PUT dnsanalyzer
+{
+    "settings" : {
+        "analyzedminute" : {
+            "number_of_shards" : 1, 
+            "number_of_replicas" : 1 
+        }
+    }
+}
+
+//
+PUT dnsanalyzer
+{
+  "mappings": {
+    "analyzedminute": {
+      "properties": {
+        "timestamp_s": {
+          "type": "date"
+        },
+        "countDns":{
+        	"type": "integer"
+        },
+        "countTimeoutDns":{
+        	"type": "integer"
+        },
+        "countIpv4":{
+        	"type": "integer"
+        },
+        "countIpv6":{
+        	"type": "integer"
+        },
+        "countTcp":{
+        	"type": "integer"
+        },
+        "countUdp":{
+        	"type": "integer"
+        },
+        "countEdns":{
+        	"type": "integer"
+        },
+        "countOpcode":{
+        	"properties": {
+                "AA": { "type": "integer" },
+                "TC": { "type": "integer" },
+                "RD": { "type": "integer" },
+                "RA": { "type": "integer" },
+                "CD": { "type": "integer" },
+                "AD": { "type": "integer" },
+                "QR": { "type": "integer" }
+            }
+        },
+        "countNoerror":{
+        	"type": "integer"
+        },
+        "countNxdomain":{
+        	"type": "integer"
+        },
+        "countQtype":{
+        	"properties": {
+                "A": { "type": "integer" },
+                "NS": { "type": "integer" },
+                "CNAME": { "type": "integer" },
+                "SOA": { "type": "integer" },
+                "WKS": { "type": "integer" },
+                "PTR": { "type": "integer" },
+                "MX": { "type": "integer" },
+                "SRV": { "type": "integer" },
+                "AAAA": { "type": "integer" },
+                "ANY": { "type": "integer" }
+            }
+        },
+        "countQclass":{
+        	"properties": {
+                "IN": { "type": "integer" }
+            }
+        },
+        "countQuery": {
+          "type": "nested",
+          "properties": {
+                    "hostname" : { "type" : "keyword"},
+                    "count" : { "type" : "long" }
+           }
+        },
+        "countIpsource": {
+          "type": "nested",
+          "properties": {
+                    "hostname" : { "type" : "keyword"},
+                    "count" : { "type" : "long" }
+           }
+        }
+      }
+    }
+  }
+}
